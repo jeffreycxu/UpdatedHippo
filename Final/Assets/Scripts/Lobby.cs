@@ -16,7 +16,7 @@ namespace GoFish
         }
         public LobbyState State = LobbyState.Default;
         public bool Debugging = false;
-
+        public GameObject Logo;
         public GameObject PopoverBackground;
         public GameObject EnterNicknamePopover;
         public GameObject WaitForOpponentPopover;
@@ -244,6 +244,7 @@ namespace GoFish
         public void OnOnlineClicked()
         {
             Debug.Log("OnOnlineClicked");
+            Logo.SetActive(false);
             ShowEnterNicknamePopover();
         }
 
@@ -253,7 +254,7 @@ namespace GoFish
         public void OnCancelClicked()
         {
             Debug.Log("OnCancelClicked");
-
+            Logo.SetActive(true);
             if (State == LobbyState.JoinedRoom)
             {
                 // TODO: leave room.
