@@ -16,7 +16,12 @@ namespace GoFish
         public const float  CARD_ROTATION_SPEED = 8f;
         public const float  BOOK_MAX_RANDOM_ROTATION = 15f;
         public const byte   POOL_IS_EMPTY = 255;
+        // String[] Animals = {"Rat", "Ox", "Tiger"};
+        // public List<string> animals = new List<string>(Animals);
+        public const string RAT_SPRITE = "rat_front";
+        public const string OX_SPRITE = "ox_front";
     }
+
 
     public enum Suits
     {

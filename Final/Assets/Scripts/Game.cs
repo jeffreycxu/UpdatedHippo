@@ -17,6 +17,10 @@ namespace GoFish
         protected GameDataManager gameDataManager;
 
         public List<Transform> PlayerPositions = new List<Transform>();
+
+        //where their animal profiles will be
+        public List<Transform> ProfilePositions = new List<Transform>();
+
         public List<Transform> BookPositions = new List<Transform>();
 
         [SerializeField]
@@ -65,6 +69,10 @@ namespace GoFish
             remotePlayer.Position = PlayerPositions[1].position;
             remotePlayer.BookPosition = BookPositions[1].position;
             remotePlayer.IsAI = true;
+
+            //need to set the animal cards!
+            localPlayer.AnimalPosition = ProfilePositions[0].position;
+            remotePlayer.AnimalPosition = ProfilePositions[1].position;
 
             cardAnimator = FindObjectOfType<CardAnimator>();
         }
@@ -157,7 +165,7 @@ namespace GoFish
             cardAnimator.DealDisplayingCards(localPlayer, Constants.PLAYER_INITIAL_CARDS);
             cardAnimator.DealDisplayingCards(remotePlayer, Constants.PLAYER_INITIAL_CARDS);
 
-            gameState = GameState.TurnStarted;
+    
         }
 
         protected virtual void OnTurnStarted()

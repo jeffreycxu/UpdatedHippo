@@ -59,6 +59,11 @@ namespace GoFish
 
         Vector2 startPosition = new Vector2(-5f, 1f);
 
+        //For the animal cards
+        public GameObject AnimalCardPrefab;
+
+        public List<Card> AnimalCards;
+
         // invoked when all queued card animations have been played
         public UnityEvent OnAllAnimationsFinished = new UnityEvent();
 
@@ -68,6 +73,7 @@ namespace GoFish
         {
             cardAnimations = new Queue<CardAnimation>();
             InitializeDeck();
+            //InitializeAnimals();
         }
 
         void InitializeDeck()
@@ -83,6 +89,22 @@ namespace GoFish
                 card.SetDisplayingOrder(-1);
                 card.transform.position = newPosition;
                 DisplayingCards.Add(card);
+            }
+        }
+
+        void InitializeAnimals()
+        {
+            AnimalCards = new List<Card>();
+
+            for (byte value = 0; value < 2; value++)
+            {
+                Vector2 newPosition = startPosition + Vector2.right * Constants.DECK_CARD_POSITION_OFFSET * value;
+                GameObject newGameObject = Instantiate(AnimalCardPrefab, newPosition, Quaternion.identity);
+                newGameObject.transform.parent = transform;
+                Card card = newGameObject.GetComponent<Card>();
+                card.SetDisplayingOrder(-1);
+                card.transform.position = newPosition;
+                AnimalCards.Add(card);
             }
         }
 
@@ -127,6 +149,20 @@ namespace GoFish
             {
                 DisplayingCards.Remove(card);
             }
+        }
+
+        //Deal the specific Animal that the player has!
+        public void DealDisplayingAnimalCard(Player player, byte animalId)
+        {
+            //Debug.Log(AnimalCards);
+            // Card card = DisplayingCards[i];
+            AnimalCard animalCard = new AnimalCard();
+            //animalCard.SetAnimalCardValue(animalId);
+            //animalCard.SetAnimalFaceUp(true);
+            player.ReceiveDisplayingAnimal(animalCard);
+            
+            //make sure to have all the Animal Cards
+            animalCard.transform.position = player.AnimalPosition; //no need for animation rn
         }
 
         public void DrawDisplayingCard(Player player)

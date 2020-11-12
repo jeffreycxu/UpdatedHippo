@@ -15,11 +15,15 @@ namespace GoFish
         public bool IsAI;
         public Vector2 Position;
         public Vector2 BookPosition;
+        public Vector2 AnimalPosition;
 
         int numberOfDisplayingCards;
         int numberOfBooks;
 
         public List<Card> DisplayingCards = new List<Card>();
+
+        //profile animal
+        public AnimalCard AnimalCard = new AnimalCard();
 
         public Vector2 NextCardPosition()
         {
@@ -70,6 +74,12 @@ namespace GoFish
             DisplayingCards.Add(card);
             card.OwnerId = PlayerId;
             numberOfDisplayingCards++;
+        }
+
+        public void ReceiveDisplayingAnimal(AnimalCard card)
+        {
+            AnimalCard = card; //only have ONE specific animal card per player
+            card.OwnerId = PlayerId;
         }
 
         public void ReceiveBook(Ranks rank, CardAnimator cardAnimator)

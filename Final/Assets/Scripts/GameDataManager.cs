@@ -26,9 +26,9 @@ namespace GoFish
             remotePlayer = remote;
             protectedData = new ProtectedData(localPlayer.PlayerId, remotePlayer.PlayerId, roomId);
         }
-
+        //shuffle the deck of cards
         public void Shuffle()
-        {
+        { 
             List<byte> cardValues = new List<byte>();
 
             for (byte value = 0; value < 52; value++)
@@ -50,6 +50,11 @@ namespace GoFish
             protectedData.SetPoolOfCards(poolOfCards);
         }
 
+        public void ShuffleAnimals() 
+        {
+
+        }
+
         public void DealCardValuesToPlayer(Player player, int numberOfCards)
         {
             List<byte> poolOfCards = protectedData.GetPoolOfCards();
@@ -62,6 +67,13 @@ namespace GoFish
 
             protectedData.AddCardValuesToPlayer(player, cardValues);
             protectedData.SetPoolOfCards(poolOfCards);
+        }
+
+        public void DealAnimalValuesToPlayer(Player player, byte animalId) 
+        {
+            protectedData.AddAnimalValueToPlayer(player, animalId);
+            //line below isn't necessary since the line above does it already
+            //protectedData.SetPlayerAnimal(animalId);
         }
 
         public byte DrawCardValue()

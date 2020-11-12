@@ -76,6 +76,20 @@ namespace GoFish
 
             cardAnimator.DealDisplayingCards(localPlayer, Constants.PLAYER_INITIAL_CARDS);
             cardAnimator.DealDisplayingCards(remotePlayer, Constants.PLAYER_INITIAL_CARDS);
+
+
+            //ANIMAL PORTION
+
+            //gameDataManager.ShuffleAnimals();
+            Debug.Log("on game started!");
+            // gameDataManager.DealAnimalValuesToPlayer(localPlayer, 0);
+            // gameDataManager.DealAnimalValuesToPlayer(remotePlayer, 1);
+            
+            // //the actual ui portion
+            cardAnimator.DealDisplayingAnimalCard(localPlayer, 0);
+            cardAnimator.DealDisplayingAnimalCard(remotePlayer, 1);
+
+            gameState = GameState.TurnStarted;
         }
 
         protected override void OnTurnStarted()

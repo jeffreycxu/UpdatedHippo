@@ -35,6 +35,13 @@ namespace GoFish
         [SerializeField]
         int selectedRank;
 
+        //Animal Data
+        [SerializeField]
+        byte player1Animal = new byte();
+        [SerializeField]
+        byte player2Animal = new byte();
+
+
         byte[] encryptionKey;
         byte[] safeData;
 
@@ -108,6 +115,22 @@ namespace GoFish
             {
                 player2Cards.AddRange(cardValues);
                 player2Cards.Sort();
+            }
+            Encrypt();
+        }
+
+        public void AddAnimalValueToPlayer(Player player, byte animalId)
+        {
+            Decrypt();
+            if (player.PlayerId.Equals(player1Id))
+            {
+                player1Animal = animalId; //adds everything in this list
+                // player1Cards.Sort();
+            }
+            else
+            {
+                player2Animal = animalId;
+                // player2Cards.Sort();
             }
             Encrypt();
         }
